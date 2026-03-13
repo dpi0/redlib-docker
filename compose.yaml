@@ -1,0 +1,45 @@
+services:
+  redlib:
+    image: dpi0/redlib:v1.0.0
+    container_name: redlib
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:8080:8080
+    user: nobody
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: 0.25
+      restart_policy:
+        condition: on-failure
+    environment:
+      # https://github.com/redlib-org/redlib#instance-settings
+      REDLIB_SFW_ONLY: "off"
+      # REDLIB_BANNER: ""
+      REDLID_ROBOTS_DISABLE_INDEXING: "off"
+      REDLID_ROBOTS_PORT: "8080"
+      REDLID_ROBOTS_ENABLE_RSS: "off"
+      # https://github.com/redlib-org/redlib#default-user-settings
+      REDLIB_DEFAULT_THEME: "system"
+      REDLIB_DEFAULT_FRONT_PAGE: "default"
+      REDLIB_DEFAULT_LAYOUT: "card"
+      REDLIB_DEFAULT_WIDE: "off"
+      REDLIB_DEFAULT_POST_SORT: "hot"
+      REDLIB_DEFAULT_COMMENT_SORT: "confidence"
+      REDLIB_DEFAULT_BLUR_SPOILER: "on"
+      REDLIB_DEFAULT_SHOW_NSFW: "on"
+      REDLIB_DEFAULT_BLUR_NSFW: "on"
+      REDLIB_DEFAULT_USE_HLS: "off"
+      REDLIB_DEFAULT_HIDE_HLS_NOTIFICATION: "off"
+      REDLIB_DEFAULT_AUTOPLAY_VIDEOS: "off"
+      # REDLIB_DEFAULT_SUBSCRIPTIONS: "subreddit1+subreddit2+subreddit3"
+      REDLIB_DEFAULT_HIDE_AWARDS: "off"
+      REDLIB_DEFAULT_DISABLE_VISIT_REDDIT_CONFIRMATION: "off"
+      REDLIB_DEFAULT_HIDE_SCORE: "off"
+      REDLIB_DEFAULT_HIDE_SIDEBAR_AND_SUMMARY: "off"
+      REDLIB_DEFAULT_FIXED_NAVBAR: "on"
+      REDLIB_DEFAULT_REMOVE_DEFAULT_FEEDS: "off"
