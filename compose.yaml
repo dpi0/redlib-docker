@@ -1,6 +1,6 @@
 services:
   redlib:
-    image: dpi0/redlib:v1.0.0
+    image: dpi0/redlib-docker:v1.0.0
     container_name: redlib
     restart: unless-stopped
     ports:
